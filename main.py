@@ -1,47 +1,41 @@
-# lib_oops.py
-I created a practice OOPs based code (Central Library) which I made using CWH videos.(File type:Python py file)
 class Library:
-    def __init__(self,listofbooks):
+    def __init__(self, listofbooks):
         self.books = listofbooks
         print("***Central Library***\n1)Showbooks\n2)Borrow Books\n3)Return Books\n4)Quit")
 
     def showBooks(self):
-        
-        for items in self.books:
-            print(items)
-    
-    def borrowbooks(self,a):
-        if a in self.books:
-            print(f'{a} ,The book you wanted to issued,was issued')
-            self.books.remove(a)
-        else:
-            print('Not there in library currently.Please check if font you entered matches exactly with Predefined books present in Library.')
+        for item in self.books:
+            print(item)
 
-    def returnbook(self,b):
-        print(f'Thank you for returning:{b}book')
-        self.books.append(b)
-    
+    def borrowBooks(self, book):
+        if book in self.books:
+            print(f"The book '{book}' you wanted to borrow has been issued.")
+            self.books.remove(book)
+        else:
+            print("The book is not currently available in the library. Please check if the book is spelled correctly.")
+
+    def returnBook(self, book):
+        print(f"Thank you for returning the book: {book}")
+        self.books.append(book)
 
     def quit(self):
         return False
 
 
 if __name__ == "__main__":
-    while(True):
-        centralLibrary = Library(['Physics','Chemistry','Math','Biology'])
-        userinput = int(input("Enter a option :\n"))
-
+    centralLibrary = Library(['Physics', 'Chemistry', 'Math', 'Biology'])
+    while True:
+        userinput = int(input("Enter an option: "))
         if userinput == 1:
             centralLibrary.showBooks()
         elif userinput == 2:
-            a = input('Enter name of book you want to issue:\n')
-            # try:
-            #     int(a)
-            # except Exception as e:
-            #     print(e)
-            centralLibrary.borrowbooks(a)
+            book = input("Enter the name of the book you want to borrow: ")
+            centralLibrary.borrowBooks(book)
         elif userinput == 3:
-            b = input('Enter name of book you want to return:\n')
-            centralLibrary.returnbook(b)
+            book = input("Enter the name of the book you want to return: ")
+            centralLibrary.returnBook(book)
+        elif userinput == 4:
+            break  # Break the while loop and exit the program
         else:
-            centralLibrary.quit()
+            print("Invalid input. Please enter a valid option.")
+
